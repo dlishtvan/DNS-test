@@ -81,7 +81,7 @@ export default class FeedMillView extends Vue {
     this.$set(this, 'optionsValue', val.options)
   }
 
-  onSave() {
+  onSave(): void {
     vxm.feedMills.saveFeedMill({...this.formData, options: this.optionsValue})
   }
 

@@ -1,4 +1,7 @@
 # dns-test
+```
+also I use ts (vue-class-component, vue-property-decorator)
+```
 
 ## Project setup
 ```

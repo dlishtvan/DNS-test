@@ -1,4 +1,4 @@
-import {action, getter, Module, mutation, VuexModule} from 'vuex-class-component';
+import {getter, Module, mutation, VuexModule} from 'vuex-class-component';
 import FeedMillsInterface from '@/types/FeedMillsInterface'
 
 @Module({namespacedPath: 'feedMills/'})

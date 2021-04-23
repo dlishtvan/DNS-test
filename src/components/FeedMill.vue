@@ -36,7 +36,7 @@ import FeedMillsInterface from "@/types/FeedMillsInterface";
 
 @Component({
   filters: {
-    monthDate(val) {
+    monthDate(val: Date) {
       return val.toLocaleDateString('en-US', {month: 'short', day: '2-digit'})
     }
   }
@@ -48,7 +48,7 @@ export default class FeedMill extends Vue {
   checked = false
 
   @Emit('edit')
-  onEdit(): string {
+  onEdit(): FeedMillsInterface {
     this.checked = !this.checked
     return this.feedMill
   }
