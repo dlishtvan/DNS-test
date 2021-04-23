@@ -6,7 +6,7 @@ export class FeedMillsStore extends VuexModule {
     @getter feedMillsData: Array<FeedMillsInterface> = [
         {
             id: 1,
-            name: 'Feed Mill1',
+            name: 'Feed Mill 1',
             createdAt: new Date(),
             options: [
                 {title: 'Canola Meal', name:'canolaMeal'},
@@ -16,55 +16,31 @@ export class FeedMillsStore extends VuexModule {
         },
         {
             id: 2,
-            name: 'Feed Mill2',
+            name: 'Feed Mill 2',
             createdAt: new Date(),
             options: []
         },
         {
             id: 3,
-            name: 'Feed Mill3',
+            name: 'Feed Mill 3',
             createdAt: new Date(),
             options: []
         },
         {
             id: 4,
-            name: 'Feed Mill4',
+            name: 'Feed Mill 4',
             createdAt: new Date(),
             options: []
         },
         {
             id: 5,
-            name: 'Feed Mill5',
+            name: 'Feed Mill 5',
             createdAt: new Date(),
             options: []
         },
         {
             id: 6,
-            name: 'Feed Mill6',
-            createdAt: new Date(),
-            options: []
-        },
-        {
-            id: 7,
-            name: 'Feed Mill7',
-            createdAt: new Date(),
-            options: []
-        },
-        {
-            id: 8,
-            name: 'Feed Mill8',
-            createdAt: new Date(),
-            options: []
-        },
-        {
-            id: 9,
-            name: 'Feed Mill8',
-            createdAt: new Date(),
-            options: []
-        },
-        {
-            id: 10,
-            name: 'Feed Mill8',
+            name: 'Feed Mill 6',
             createdAt: new Date(),
             options: []
         },
@@ -79,5 +55,8 @@ export class FeedMillsStore extends VuexModule {
         this.feedMillsData.splice(index, 1);
     }
 
-
+    @mutation saveFeedMill(feedMill: FeedMillsInterface) {
+        const index = this.feedMillsData.findIndex(feedMills => feedMills.id == feedMill.id);
+        this.feedMillsData.splice(index, 1, feedMill);
+    }
 }

@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col>
-        <b-row>
+        <b-row class="mb-4">
           <b-col>Feed Mill</b-col>
           <b-col>
             <b-button
@@ -40,47 +40,11 @@
               </b-col>
             </b-row>
           </b-col>
-          <b-col v-if="true">
-            <div class="mb-3">
-              <label for="edit-name">Diet Name:</label>
-              <b-form-input
-                  id="edit-name"
-                  type="text"
-                  v-model="activeFeedMill.name"
-              >
-              </b-form-input>
-            </div>
-            <b-row>
-              <b-col class="mb-4">
-                <multiselect
-                    v-model="optionsValue"
-                    label="name"
-                    track-by="name"
-                    :options="options"
-                    :multiple="true"
-                    :taggable="true"
-                ></multiselect>
-              </b-col>
-            </b-row>
-            <b-row align-h="between">
-              <b-col class="col-auto">
-                <b-button
-                    variant="link"
-                    class="text-danger"
-                    @click="deleteFeedMill"
-                >
-                  Delete Feed Mill
-                </b-button>
-              </b-col>
-              <b-col class="col-auto">
-                <b-button
-                    pill
-                    variant="success"
-                >
-                  Save Feed Mill
-                </b-button>
-              </b-col>
-            </b-row>
+          <b-col>
+            <feed-mill-view
+              :feed-mill="activeFeedMill"
+            >
+            </feed-mill-view>
           </b-col>
         </b-row>
       </b-col>
@@ -91,14 +55,14 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import FeedMill from '@/components/FeedMill';
+import FeedMillView from '@/components/FeedMillView'
 import {vxm} from '@/store';
 import FeedMillsInterface from "@/types/FeedMillsInterface";
-import Multiselect from 'vue-multiselect'
 
 @Component({
   components: {
-    FeedMill,
-    Multiselect
+    FeedMillView,
+    FeedMill
   },
 })
 
@@ -106,21 +70,6 @@ export default class Home extends Vue {
   searchQuery = ''
 
   activeFeedMill: FeedMillsInterface = {}
-
-  optionsValue = null
-
-  options = [
-    {title: 'Canola Meal', name:'canolaMeal'},
-    {title: 'Copra Meal', name:'copraMeal'},
-    {title: 'Lupins', name:'lupins'},
-    {title: 'Copra Expellar', name:'copraExpellar'},
-    {title: 'Cottonseed Meal', name:'cottonseedMeal'},
-    {title: 'Grass Meal', name:'grassMeal'},
-    {title: 'Canola Meal / Repessed Meal', name:'canolaMealRepessedMeal'},
-    {title: 'Soy', name:'soy'},
-    {title: 'Barley', name:'barley'},
-  ]
-
 
   get feedMills(): FeedMillsInterface {
     return vxm.feedMills.feedMillsData.filter(feedMill => {
@@ -131,17 +80,12 @@ export default class Home extends Vue {
   addFeedMill(): void {
     vxm.feedMills.addFeedMill({
       id: new Date().getTime(),
-      name: 'Feed Millwqee',
+      name: `Feed Mill ${this.feedMills.length + 1}`,
       createdAt: new Date()
     })
   }
 
-  deleteFeedMill(): void {
-    vxm.feedMills.deleteFeedMill(this.activeFeedMill.id)
-  }
-
   onEdit(feedMill: string): void {
-    console.log(feedMill);
     this.$set(this, 'activeFeedMill', feedMill)
   }
 
@@ -150,7 +94,3 @@ export default class Home extends Vue {
   }
 }
 </script>
-
-<style scoped lang="sass">
-  @import "~vue-multiselect/dist/vue-multiselect.min.css"
-</style>

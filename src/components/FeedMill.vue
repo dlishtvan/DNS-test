@@ -20,8 +20,10 @@
         >
           Edit
         </b-button>
-        <b-form-checkbox class="checkbox">
-
+        <b-form-checkbox
+            class="checkbox"
+            v-model="checked"
+        >
         </b-form-checkbox>
       </b-col>
     </b-row>
@@ -43,8 +45,11 @@ import FeedMillsInterface from "@/types/FeedMillsInterface";
 export default class FeedMill extends Vue {
   @Prop() private feedMill!: FeedMillsInterface;
 
+  checked = false
+
   @Emit('edit')
   onEdit(): string {
+    this.checked = !this.checked
     return this.feedMill
   }
 }
@@ -89,5 +94,6 @@ export default class FeedMill extends Vue {
 
         .custom-control-label::before
           border-color: #45AC34
+          border-radius: 50%
 
 </style>
