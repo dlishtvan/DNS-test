@@ -55,7 +55,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import FeedMill from '@/components/FeedMill';
-import FeedMillView from '@/components/FeedMillView'
+import FeedMillView from '@/components/FeedMillView';
 import {vxm} from '@/store';
 import FeedMillsInterface from "@/types/FeedMillsInterface";
 

@@ -1,8 +1,21 @@
 <template>
   <div id="app" class="p-3">
-    <router-view/>
+    <Home></Home>
   </div>
 </template>
+
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+import Home from '@/views/Home';
+
+@Component({
+  components: {
+    Home
+  }
+})
+
+export default class App extends Vue {}
+</script>
 
 <style lang="scss">
 #app {
@@ -17,10 +30,6 @@
   a {
     font-weight: bold;
     color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 </style>
